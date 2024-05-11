@@ -1,0 +1,43 @@
+name: Publish NPM Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: yarn test:panel
+
+  publish-npm:
+    needs: test
+    runs-on: ubuntu-latest
+    concurrency: "run"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - name: Setup git config
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+      - name: Build Everything
+        run: |
+          pnpm build
+      - name: Copy Readme
+        run: |
+          pnpm cpy:readme
+      - name: Publish with pnpm
+        run: |
+          cd packages/trpc-panel
+          echo "publishing with version ${{ github.event.release.tag_name }}"
+          pnpm run publish-packages
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
