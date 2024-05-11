@@ -1,6 +1,6 @@
 {
   "name": "web",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,15 +9,23 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@repo/ui": "workspace:*",
+    "@ariadne/trpc-panel": "workspace:^",
+    "@ariadne/ui": "workspace:*",
+    "@tanstack/react-query": "4",
+    "@trpc/client": "^10.2.0",
+    "@trpc/next": "^10.45.2",
+    "@trpc/react-query": "10.2.0",
+    "@trpc/server": "10.2.0",
     "next": "^14.1.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "superjson": "^1.12.0",
+    "zod": "^3.19.1"
   },
   "devDependencies": {
+    "@ariadne/eslint-config": "workspace:*",
+    "@ariadne/typescript-config": "workspace:*",
     "@next/eslint-plugin-next": "^14.1.1",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",

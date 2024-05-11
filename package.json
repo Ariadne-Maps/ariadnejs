@@ -5,11 +5,13 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "publish-packages": "turbo run build   && changeset version && changeset publish"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@ariadne/eslint-config": "workspace:*",
+    "@ariadne/typescript-config": "workspace:*",
+    "@changesets/cli": "^2.27.1",
     "prettier": "^3.2.5",
     "turbo": "latest"
   },
